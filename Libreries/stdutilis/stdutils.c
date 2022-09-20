@@ -11,3 +11,14 @@ void print_array(int *arr, int size) {
     printf("\n");
     return;
 }
+
+int bisearch(int key, int* arr, int s, int e) {
+    int middle = (e + s)/2;
+    if(s>e) return a[e] == key ? e : -1;
+    if(arr[middle] == key)
+        return middle;
+    if(arr[middle] > key)
+        return bisearch(key, arr, s, middle);
+    else
+        return bisearch(key, arr, middle, e)
+}
