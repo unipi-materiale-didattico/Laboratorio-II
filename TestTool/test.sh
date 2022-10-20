@@ -8,22 +8,22 @@
 # ----------------------------------
 # Colors
 # ----------------------------------
-NOCOLOR='\033[0m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHTGRAY='\033[0;37m'
-DARKGRAY='\033[1;30m'
-LIGHTRED='\033[1;31m'
-LIGHTGREEN='\033[1;32m'
-YELLOW='\033[1;33m'
-LIGHTBLUE='\033[1;34m'
-LIGHTPURPLE='\033[1;35m'
-LIGHTCYAN='\033[1;36m'
-WHITE='\033[1;37m'
+NOCOLOR='\e[0m'
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+ORANGE='\e[0;33m'
+BLUE='\e[0;34m'
+PURPLE='\e[0;35m'
+CYAN='\e[0;36m'
+LIGHTGRAY='\e[0;37m'
+DARKGRAY='\e[1;30m'
+LIGHTRED='\e[1;31m'
+LIGHTGREEN='\e[1;32m'
+YELLOW='\e[1;33m'
+LIGHTBLUE='\e[1;34m'
+LIGHTPURPLE='\e[1;35m'
+LIGHTCYAN='\e[1;36m'
+WHITE='\e[1;37m'
 
 # $1 The program to test
 # $2 The program input
@@ -36,21 +36,21 @@ RunTest(){
     DIFF=$(diff <(echo "$3") <(echo "$out"))
     if [ "$DIFF" = "" ]
     then
-      echo "-${LIGHTGREEN} ✅ Pass${NOCOLOR}"
+      echo -e "-${LIGHTGREEN} ✅ Pass${NOCOLOR}"
     else
-      echo "-${RED} ❌ Fail${NOCOLOR}"
-      echo "${LIGHTGRAY}Real Output:${NOCOLOR}"
+      echo -e "-${RED} ❌ Fail${NOCOLOR}"
+      echo -e "${LIGHTGRAY}Real Output:${NOCOLOR}"
       echo $out
-      echo "${LIGHTGRAY}Expected Output:${NOCOLOR}"
+      echo -e "${LIGHTGRAY}Expected Output:${NOCOLOR}"
       echo $3
     fi
   elif [ "$exit_status" = "127" ]
   then
-    echo "-${RED} ❌ Fail${NOCOLOR}"
-    echo "${LIGHTGRAY}Timeout${NOCOLOR}"
+    echo -e "-${RED} ❌ Fail${NOCOLOR}"
+    echo -e "${LIGHTGRAY}Timeout${NOCOLOR}"
   else
-    echo "-${RED} ❌ Fail${NOCOLOR}"
-    echo "${LIGHTGRAY}Exit Status:${NOCOLOR} $exit_status"
+    echo -e "-${RED} ❌ Fail${NOCOLOR}"
+    echo -e "${LIGHTGRAY}Exit Status:${NOCOLOR} $exit_status"
   fi
 }
 
@@ -73,10 +73,10 @@ do
   shift 1
 done
 
-echo "${YELLOW}$test_name:${NOCOLOR}"
+echo -e "${YELLOW}$test_name:${NOCOLOR}"
 for i in $(seq 1 $test_number)
 do
-  echo "${LIGHTGRAY}Test $i${NOCOLOR}"
+  echo -e "${LIGHTGRAY}Test $i${NOCOLOR}"
   RunTest $program ${input_arr[$i]} ${output_arr[$i]}
 done
 
